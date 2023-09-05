@@ -11,12 +11,13 @@
 #Duration time: the time it takes for processor to handle the packet
 #Return the time, at which processor will start handling each packet
 #-1 if the packet will not be handled
-from collections import deque                                   
 
+from collections import deque                                   
 class Processor:
     def __init__(self, size: int):
         self.size = size
         self.deq = deque([])
+        self.time = 0
         
     def add(self, ar: int, dur: int):
         #When a new package arrives, check if some packets were already processed
@@ -30,15 +31,15 @@ class Processor:
             
             #The handling will start when the processor will be free from the previous tasks
             #or at the time of packet's arrival, if it arrives after finishing of the previous tasks.
-            time = max(time, ar)
+            self.time = max(self.time, ar)+dur
 
             #By the end of the packet processing, processor will be at the time of handling start + 
             #duration of process handling. We append this value to the stack.
-            self.deq.append(time+dur)
-            return time
+            self.deq.append(self.time)
+            return self.time-dur
         else:
             return -1
-
+            
 def packer_handling (size:int, arrival: List[int], duration: List[int]) -> List[int]:
     ans = []
     Proc = Processor(size)
