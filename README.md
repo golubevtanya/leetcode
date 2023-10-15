@@ -7,4 +7,4 @@ The sources of the problems are Leetcode and Stepik.
 
 |Not to forget: here is the link to the infamous [Leetcode](https://leetcode.com/).|
 |----------------------------------------------------------------------------------|
-|The link for [Stepik] resource (in Russian): (https://stepik.org/learn).|
+|The link for [Stepik] (https://stepik.org/learn).|
